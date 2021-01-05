@@ -1,0 +1,26 @@
+<div class="col-md-12 mt-3">
+    <h1>{{ page_title }}</h1>
+    <p *ngIf="status != 'success'">
+        Introduce los datos correspondiente a la categoria 
+    </p>
+    <hr>
+    <div class="alert alert-success col-md-5" *ngIf="status == 'success'">
+        La categoria se ha creado exitosamente
+    </div>
+    <div class="alert alert-danger col-md-5" *ngIf="status == 'error'">
+        La categoria no se ha guadado, problemas al registrar
+    </div>
+    <!-- Formulario de ajuste -->
+   <form #categoryForm="ngForm" (ngSubmit)="onSubmit(categoryForm)" class="col-md-5">
+        <div class="form-group">
+            <label for="name">Nombre</label>
+            <input type="text" name="name" #name="ngModel" [(ngModel)]="category.name" class="form-control" required/>
+            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+                El nombre de la categoria es invalido
+            </small>
+        </div>
+        <input type="submit" value="Guardar" class="btn btn-success" [disabled]="categoryForm.invalid" />
+   </form>
+    <br>
+    
+</div>
